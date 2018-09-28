@@ -39,3 +39,4 @@
     ```
     
 * Put `?` after any type to mark that the variable of that type can store `null` values. `String?, Int?, AwesomeType?`.
+![GitHub Logo](/nullable_type.png)
