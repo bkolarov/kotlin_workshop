@@ -123,3 +123,52 @@ val b: String = a ?: ""
 ### Save casts: "as?"
 `as` throws `ClassCastException` when you try to cast something with the wrong class.  You can check it with the `is` operator, but Kotlin has a sugary handy operator so you can write less code.
 
+![as? operator](/typesystem/as_operator.png)
+
+### Not-null assertions: "!!"
+Even with the `null-safe` environment, Kotlin still allows you to shoot yourself in the leg, but it makes you very very aware of doing it.
+
+```Kotlin
+fun ignoreNulls(s: String?) {
+    val sNotNull: String = s!!
+    println(sNotNull.length)
+}
+
+>>> ignoreNulls(null)
+Exception in thread "main" kotlin.KotlinNullPointerException
+at <...>.ignoreNulls(07_NotnullAssertions.kt:2)
+```
+* Kotlin throws an exception not where you used the value. It generates an assertion before the usage and that's where it fails.
+
+### The "let" function
+* `?.let { }`
+    ```Kotlin
+    fun doStuffToString(s: String?) {
+        s?.let {
+            println(it.length) // you can be sure that it is not null
+        }
+    }
+    ```
+* `.let { }`
+
+    ```Kotlin
+    fun doStuffToString(s: String?) {
+        s.let {
+            val l: Int = s?.length ?: 0
+        }
+    }
+    ```
+### Late-initialized properties
+Kotlin requires you to initialize all properties in the constructor or in the `init` block. However sometimes you can't do that. For example if you use a DI framework or you're writing tests. In that case you have to provide null values in for those properties and mark them as `nullable`. Actually you don't have to.
+```Kotlin
+class MyTest {
+    private lateinit var myService: MyService
+ 
+    @Before fun setUp() {
+        myService = MyService()
+    }
+}
+```
+* It works only with `var`s
+
+### Nullability of type parameters
