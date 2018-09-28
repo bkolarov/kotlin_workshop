@@ -281,3 +281,13 @@ By using this funcion, the copiler knows that the function will never return, th
 ### Read-only and mutable collections
 Kotlin has separate interfaces for accessing data in a collection and for modifying the data.
 ![Collection/MutableCollection](/typesystem/mcollection.png)
+* As a general rule, you should use read-only interfaces as much as possible.
+
+Example:
+```Kotlin
+fun <T> copyElements(source: Collection<T>, target: MutableCollection<T>) {
+    for (item in source) {
+        target.add(item)
+    }
+}
+```
