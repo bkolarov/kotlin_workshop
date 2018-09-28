@@ -22,6 +22,14 @@
     
     However, even with the annotation, you'll be able to compile your code and shoot yourself in the leg.
     
+    Let's see the same functino in Kotlin.
+    
     ```Kotlin
     fun strLen(s: String): Int = s.length
+    ```
+    Here the parameter `s` is declared as `non-null`. If you attempt to call it with `null`, you'll get a compile time error.
+    
+    ```
+    >>> strLen(null)
+    ERROR: Null can not be a value of a non-null type String
     ```
