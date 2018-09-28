@@ -210,7 +210,7 @@ Since `nullable` variables can hold `null` values (duuh.), nullable primitive ty
     val i = 1
     val l: Long = i.toLong()
     ```
- * Conversion functions are defined for every primitive type except `Boolean`
+* Conversion functions are defined for every primitive type except `Boolean`
     ```Kotlin
     val x = 1L
     val l = listOf(1, 2, 3)
@@ -218,3 +218,50 @@ Since `nullable` variables can hold `null` values (duuh.), nullable primitive ty
     
     x in l // ERROR
     ```
+* Primitive type literals
+    * Literals of type Long use the L suffix: 123L.
+    * Literals of type Double use the standard representation of floating-point
+numbers: 0.12, 2.0, 1.2e10, 1.2e-10.
+    * Literals of type Float use the f or F suffix: 123.4f, .456F, 1e3f.
+    * Hexadecimal literals use the 0x or 0X prefix (such as 0xCAFEBABE or
+0xbcdL).
+    * Binary literals use the 0b or 0B prefix (such as 0b000000101).
+    * Starting from Koltin 1.1 you can use underscores in number literals for readability. For example `1_000_000`
+    * Character literals are as in Java
+    
+### "Any" and "Any?": the root types
+* `Any` is what `Object` is in Java - the root of the class hierrachy.
+* `Any` is the supertype of all types, including the primitive ones.
+    ```Kotlin
+    val answer: Any = 42 // Autoboxed as Any is a reference type
+    ```
+* For `null` values you have to use `Any?`
+* In the Kotlin world, `Object` has inherited the `toString`, `equals` and `hashCode` methods from `Any`
+* Under the hood `Any` corresponds to Object
+
+### The Unit type: Kotlin's "void"
+* `Unit` type in Kotlin fulfills the same function as `void` in java
+    ```Kotlin
+    fun f(): Unit { ... }
+    // Same as
+    fun f(): { ... 
+    ```
+    Same as:
+    ```Java
+    void f() { ... }
+    ```
+* `Unit` can be omitted when used as a return type.
+    In Java if you need an generic interface with function that does some action you have two choices. Use `Runnable` when there is no result nad use `Callable` when the function should return something. In Kotlin you use just `Unit`. 
+    
+    ```Kotlin
+    interface Processor<T> {
+        fun process(): T
+    }
+    
+    class NoResultProcessor : Processor<Unit> {
+        override fun process() { // You don't need the return type
+        // do stuff
+        }
+    }
+    ```
+### The Nothing type: "This function never returns"
