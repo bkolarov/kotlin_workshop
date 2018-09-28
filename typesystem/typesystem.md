@@ -39,4 +39,28 @@
     ```
     
 * Put `?` after any type to mark that the variable of that type can store `null` values. `String?, Int?, AwesomeType?`.
-![](/nullable_type.png)
+![Nullable Type](/typesystem/nullable_type.png)
+
+* Once you have a value of `nullable` type, the set of operations you can perform on it is restricted.
+    ```
+    >>> fun strLenSafe(s: String?) = s.length()
+    ERROR: only safe (?.) or non-null asserted (!!.) calls are allowed
+    on a nullable receiver of type kotlin.String?
+    ```
+* You can't assign a `nullable` variable to a `non-null` one, or you can't pass the `nullable` variable's value to a function that has a `non-null` parameter.
+    ```Kotlin
+    >>> val x: String? = null
+    >>> var y: String = x
+    ERROR: Type mismatch: inferred type is String? but String was expected
+    
+    >>> fun strLen(s: String): Int = s.length
+    >>> strLen(x)
+    ERROR: Type mismatch: inferred type is String? but String was expected
+    ```
+* What can you do with `nullable` variable is to compare it with null and use it as you want. Safely.
+    ```Kotlin
+    fun strLenSafe(s: String?): Int =
+        if (s != null) s.length else 0
+    ```
+    
+### Safe call operator: "?."
