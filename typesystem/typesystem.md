@@ -33,3 +33,9 @@
     >>> strLen(null)
     ERROR: Null can not be a value of a non-null type String
     ```
+    If you want to allow null values for `s` you have to put a question mark after the type name:
+    ```Kotlin
+    fun strLenSafe(s: String?) = ...
+    ```
+    
+* Put `?` after any type to mark that the variable of that type can store `null` values. `String?, Int?, AwesomeType?`.
