@@ -62,5 +62,15 @@
     fun strLenSafe(s: String?): Int =
         if (s != null) s.length else 0
     ```
-    
+* There is no such thing as `nullable` and `non-null` types at runtime. All this information is used only during compilation, so there is no runtime overhead.
+
 ### Safe call operator: "?."
+To prevent the code from getting more and more verbose with `null` checks and `Optional` wrappers, Kotlin provides a safe-call operator: `?.`. It combines a `null` check and a methodcall into a single operation.
+
+```Kotlin 
+s?.toUpperCase()
+``` 
+Is the same as:
+```Kotlin 
+if (s != null) s.toUpperCase() else null
+```
