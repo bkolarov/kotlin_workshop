@@ -197,3 +197,24 @@ class MyTest {
 * The compiler decides whether to use wrappers or not and it does use them only if necessary. In most cases it will use the Java primitive types.
 
 ### Nullable primitive types: Int?, Boolean?, etc.
+Since `nullable` variables can hold `null` values (duuh.), nullable primitive types are represented as their wrappers.
+
+### Nullable conversions
+* Kotlin doesn't convert numbers from one type to another implicitly
+    ```Kotlin
+    val i = 1
+    val l: Long = i // ERROR
+    ```
+    You have to do this explicitly
+    ```Kotlin
+    val i = 1
+    val l: Long = i.toLong()
+    ```
+ * Conversion functions are defined for every primitive type except `Boolean`
+    ```Kotlin
+    val x = 1L
+    val l = listOf(1, 2, 3)
+    val b = x.toInt() in l
+    
+    x in l // ERROR
+    ```
