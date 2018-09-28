@@ -71,6 +71,25 @@ To prevent the code from getting more and more verbose with `null` checks and `O
 s?.toUpperCase()
 ``` 
 Is the same as:
+
 ```Kotlin 
 if (s != null) s.toUpperCase() else null
 ```
+
+![Safe call operator](/typesystem/safe_null_operator.png)
+
+* The result type of such invocation is `nullable`
+* Safe calls can be used for accessing properties
+    ```Kotlin
+    class Employee(val name: String, val manager: Employee?)
+    
+    fun managerName(employee: Employee): String? = employee.manager?.name
+    ```
+    ```
+    >>> val ceo = Employee("Da Boss", null)
+    >>> val developer = Employee("Bob Smith", ceo)
+    >>> println(managerName(developer))
+    Da Boss
+    >>> println(managerName(ceo))
+    null
+    ```
