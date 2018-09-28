@@ -280,3 +280,4 @@ By using this funcion, the copiler knows that the function will never return, th
 
 ### Read-only and mutable collections
 Kotlin has separate interfaces for accessing data in a collection and for modifying the data.
+![Collection/MutableCollection](/typesystem/mcollection.png)
