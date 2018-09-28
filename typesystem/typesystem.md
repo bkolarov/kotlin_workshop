@@ -277,3 +277,6 @@ By using this funcion, the copiler knows that the function will never return, th
 * `List<String?>` - can hold `null` values
 * `List<String>?`- the list itself can be `null`
 * `List<String?>?`- both the list and its values can be `null`
+
+### Read-only and mutable collections
+Kotlin has separate interfaces for accessing data in a collection and for modifying the data.
