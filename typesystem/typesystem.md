@@ -172,3 +172,17 @@ class MyTest {
 * It works only with `var`s
 
 ### Nullability of type parameters
+* All type parameters of functions and classes in Kotlin are nullable.
+* Any type, including a nullable type, can be substituted for a type parameter
+    ```Kotlin
+    fun <T> printHashCode(t: T) {
+        println(t?.hashCode())
+    }
+    ```
+### Nullability and Java
+* Platform type
+    Types of which Kotlin doesn't have nullability information are called Platform types.
+    All types used in the Java code are considered as Platform types. If the Java code has the `@Nullable` and `@NonNull` annotations Kotlin will have nullability information but in all other cases it won't.
+* If your project has both Java and Kotlin, beware that eventhough you defined something as `non-null`, still a `null` value can be assigned to it if it comes from Java. The good thing is that you'll get a meaningful runtime exception if that happens.
+
+## Primitive and other basic types
