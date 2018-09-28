@@ -186,3 +186,14 @@ class MyTest {
 * If your project has both Java and Kotlin, beware that eventhough you defined something as `non-null`, still a `null` value can be assigned to it if it comes from Java. The good thing is that you'll get a meaningful runtime exception if that happens.
 
 ## Primitive and other basic types
+### Primitive types: Int, Boolean, etc.
+* Kotlin doesn't distinguish between primitive types and wrapper ones. You always use the same:
+    * `Byte, Short, Int, Long`
+    * `Float, Double`
+    * `Char`
+    * `Boolean`
+* You always work the same way with the primitive types.
+* You can use the methods of the Java wrapper class on the variable (For example you can use the Integer#compareTo(Integer) method on a normal `Int` variable)
+* The compiler decides whether to use wrappers or not and it does use them only if necessary. In most cases it will use the Java primitive types.
+
+### Nullable primitive types: Int?, Boolean?, etc.
