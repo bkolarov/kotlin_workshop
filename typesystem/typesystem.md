@@ -93,3 +93,33 @@ if (s != null) s.toUpperCase() else null
     >>> println(managerName(ceo))
     null
     ```
+* You can chain safe-calls
+    ```Kotlin
+    class Address(val streetAddress: String, val zipCode: Int, val city: String, val country: String)
+    
+    class Company(val name: String, val address: Address?)
+    
+    class Person(val name: String, val company: Company?)
+    
+    fun Person.countryName(): String {
+        val country = this.company?.address?.country
+        return if (country != null) country else "Unknown"
+    }
+    ```
+ ### Elvis operator "?:"
+ You can provide default values instead of `null`
+ ```Kotlin
+val a: String? = "123"
+val b: String = a ?: ""
+ ```
+ * The Elvis operator works with `return` and `throw` as its right side
+    ```Kotlin
+    fun openSomeScreen(activity: Activity?) {
+        val activity = activity :? return
+        
+        startActivity(Intent(activity, SomeClass.class))
+    }
+    ```
+### Save casts: "as?"
+`as` throws `ClassCastException` when you try to cast something with the wrong class.  You can check it with the `is` operator, but Kotlin has a sugary handy operator so you can write less code.
+
