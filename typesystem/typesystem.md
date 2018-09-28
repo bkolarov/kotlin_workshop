@@ -265,3 +265,9 @@ numbers: 0.12, 2.0, 1.2e10, 1.2e-10.
     }
     ```
 ### The Nothing type: "This function never returns"
+This type is meant to be used for funcitons that never returns. For example if you have a function `fail()` in tests, that throws an exception.
+* It can be used as the right side of the Elvis operator
+    ```Kotlin
+    val address = company.address ?: fail("No address")
+    ```
+By using this funcion, the copiler knows that the function will never return, therefore such expressions as the one above are possible.
