@@ -291,3 +291,16 @@ fun <T> copyElements(source: Collection<T>, target: MutableCollection<T>) {
     }
 }
 ```
+You can't pass a read-only collection as a target. You're sure that the functino won't modify your source.
+
+* Keep in mind that there might be other references to the obejcts in your collection. They might be modified from somewhere else.
+* Read-only collections aren't always thread-safe
+
+### Kotlin collections and Java
+* If you have a Java method that takes a `java.util.Collection` as a parameter, you can pass any Collection or MutableCollection value as an argument.
+* Java doesn't distinguish `Collection` and `MutableCollection`. Your collections might get modified in the Java code, eventhough they are `read-only`.
+
+### Collections as platform types
+* Kotlin doesn't have information whether a colletions in Java code are mutable or not, so you can treat it like both.
+
+### Arrays of objects and primitive types
