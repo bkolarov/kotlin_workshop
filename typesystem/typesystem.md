@@ -304,3 +304,18 @@ You can't pass a read-only collection as a target. You're sure that the functino
 * Kotlin doesn't have information whether a colletions in Java code are mutable or not, so you can treat it like both.
 
 ### Arrays of objects and primitive types
+* Arrays in Java are represented as `Array` in Kotlin
+    ```Kotlin
+    fun main(args: Array<String>) {
+        for (i in args.indices) {
+            println("Argument $i is: ${args[i]}")
+        }
+    }
+    ```
+* Create an array
+    * `arrayOf`
+    * `arrayOfNulls` - creates an array and initializes it with nulls
+    * `Array` constructor - creates an array of the given size and initializes each element with the lambda
+        ```Kotlin
+        val letters = Array<String>(26) { i -> ('a' + i).toString() }
+        ```
