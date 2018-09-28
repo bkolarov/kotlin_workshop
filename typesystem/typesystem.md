@@ -271,3 +271,9 @@ This type is meant to be used for funcitons that never returns. For example if y
     val address = company.address ?: fail("No address")
     ```
 By using this funcion, the copiler knows that the function will never return, therefore such expressions as the one above are possible.
+
+## Collections and arrays
+### Nullability and collections
+* `List<String?>` - can hold `null` values
+* `List<String>?`- the list itself can be `null`
+* `List<String?>?`- both the list and its values can be `null`
